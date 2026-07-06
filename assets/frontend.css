@@ -1,21 +1,26 @@
-/* Wieder verfügbar – Frontend-Styles */
+/**
+ * Wieder verfügbar — Frontend-Styles, built on the shared kip-ui design system.
+ * Scoped under .kip-back-in-stock; values fall back gracefully if kip-ui is absent.
+ */
 
-/* Formular-Container */
+/* ── Form container ──────────────────────────────────────────────────────── */
 .wvb-notify-wrap {
 	margin: 24px 0;
-	padding: 20px 24px;
-	background: #f9f9f9;
-	border: 1px solid #e0e0e0;
-	border-radius: 4px;
+	padding: var(--kip-pad, 20px) var(--kip-pad, 24px);
+	background: var(--kip-surface-2, #f9f9f9);
+	border: 1px solid var(--kip-border, #e4e7ec);
+	border-radius: var(--kip-radius, 8px);
 }
 
 .wvb-heading {
 	margin-top: 0;
 	margin-bottom: 16px;
 	font-size: 1.1em;
+	font-weight: 700;
+	color: var(--kip-text, inherit);
 }
 
-/* Felder */
+/* ── Fields ──────────────────────────────────────────────────────────────── */
 .wvb-field {
 	margin-bottom: 14px;
 }
@@ -24,54 +29,54 @@
 	display: block;
 	font-weight: 600;
 	margin-bottom: 4px;
+	color: var(--kip-text, inherit);
 }
 
 .wvb-field input[type="email"] {
 	width: 100%;
 	max-width: 360px;
 	padding: 8px 10px;
-	border: 1px solid #8c8f94;
-	border-radius: 3px;
+	border: 1px solid var(--kip-border, #8c8f94);
+	border-radius: var(--kip-radius-sm, 4px);
 	font-size: 14px;
+	font-family: inherit;
+	background: var(--kip-surface, #fff);
+	color: var(--kip-text, inherit);
 	box-sizing: border-box;
+	transition: border-color 0.15s;
 }
 
-/* Einwilligungsfeld */
+.wvb-field input[type="email"]:focus {
+	outline: none;
+	border-color: var(--kip-accent, #2563eb);
+	box-shadow: 0 0 0 2px color-mix(in srgb, var(--kip-accent, #2563eb) 15%, transparent);
+}
+
+/* Consent checkbox row */
 .wvb-consent-label {
 	font-weight: 400 !important;
 	display: flex;
 	align-items: flex-start;
 	gap: 8px;
 	cursor: pointer;
+	color: var(--kip-text, inherit);
 }
 
 .wvb-consent-label input[type="checkbox"] {
-	margin-top: 2px;
+	margin-top: 3px;
 	flex-shrink: 0;
+	accent-color: var(--kip-accent, #2563eb);
 }
 
-/* Pflichtzeichen */
+/* Required asterisk */
 .wvb-required {
 	color: #d63638;
 	margin-left: 2px;
 }
 
-/* Button */
+/* ── Submit button (kip-btn--primary handles base styles via kip-ui) ─────── */
 .wvb-submit {
-	background: #2271b1;
-	color: #fff;
-	border: none;
-	padding: 10px 20px;
-	font-size: 14px;
-	cursor: pointer;
-	border-radius: 3px;
 	margin-top: 4px;
-}
-
-.wvb-submit:hover,
-.wvb-submit:focus {
-	background: #135e96;
-	color: #fff;
 }
 
 .wvb-submit:disabled {
@@ -79,22 +84,34 @@
 	cursor: default;
 }
 
-/* Status-Meldungen */
+/* ── Inline notice (success / error) ─────────────────────────────────────── */
 .wvb-message {
 	padding: 10px 14px;
-	border-radius: 3px;
+	border-radius: var(--kip-radius-sm, 4px);
 	margin-bottom: 14px;
 	font-size: 14px;
+	border: 1px solid transparent;
 }
 
 .wvb-message.wvb-success {
-	background: #edfaef;
-	border: 1px solid #00a32a;
-	color: #1a4731;
+	background: var(--kip-notice-success-bg, #edfaef);
+	border-color: var(--kip-notice-success-border, #00a32a);
+	color: var(--kip-notice-success-text, #1a4731);
 }
 
 .wvb-message.wvb-error {
-	background: #fce8e8;
-	border: 1px solid #d63638;
-	color: #5c1d1e;
+	background: var(--kip-notice-error-bg, #fce8e8);
+	border-color: var(--kip-notice-error-border, #d63638);
+	color: var(--kip-notice-error-text, #5c1d1e);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+	.wvb-notify-wrap {
+		padding: 16px;
+	}
+
+	.wvb-field input[type="email"] {
+		max-width: 100%;
+	}
 }

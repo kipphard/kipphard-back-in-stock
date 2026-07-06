@@ -1,81 +1,96 @@
-=== Wieder verfügbar – Back in Stock Notifications für WooCommerce ===
-Contributors: andrekipphard
-Tags: woocommerce, back in stock, stock notification, wieder verfügbar, email
+=== Kipphard Back in Stock for WooCommerce ===
+Contributors: kipphard
+Tags: back in stock, woocommerce, stock notification, waitlist, lagerbenachrichtigung
 Requires at least: 6.4
-Tested up to: 6.7
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Benachrichtigt Kunden per E-Mail, sobald ein ausverkauftes WooCommerce-Produkt wieder auf Lager ist. / Notifies customers via email when an out-of-stock WooCommerce product becomes available again.
+Notifies customers by email when an out-of-stock WooCommerce product becomes available again. Clean UX, honest scope.
 
 == Description ==
 
-**Deutsch:**
+**Kipphard Back in Stock for WooCommerce** adds a lightweight "Notify me" form to out-of-stock product pages. When stock is replenished, all subscribers are notified automatically — no manual work required.
 
-„Wieder verfügbar" zeigt auf ausverkauften Produktseiten ein schlichtes Formular an, mit dem Kunden ihre E-Mail-Adresse hinterlegen können. Sobald der Lagerbestand sich auf „auf Lager" ändert, werden alle eingetragenen Abonnenten automatisch benachrichtigt.
+**What this plugin does:**
 
-**Funktionen (Free):**
+* Displays a "Notify me" sign-up form on out-of-stock WooCommerce product pages
+* Stores subscribers in a dedicated custom database table
+* GDPR-compliant consent checkbox on the sign-up form
+* Sends an automatic plain-text email to all subscribers when stock status changes to "In Stock" — uses configurable `{product}` and `{link}` placeholders in subject and body
+* Duplicate prevention: registering twice with the same email and product has no effect
+* Subscriber list in the WooCommerce admin (WooCommerce → Back in Stock)
+* Configurable form heading, button label, consent text, success/error messages, email subject, and email body
 
-* „Benachrichtige mich"-Formular auf ausverkauften Produktseiten
-* DSGVO-konformes Einwilligungsfeld
-* Automatischer E-Mail-Versand bei Lagerbestandsänderung
-* Anpassbare Formulartexte, E-Mail-Betreff und -Body (mit {product}- und {link}-Platzhaltern)
-* Abonnentenliste im WooCommerce-Adminbereich
-* Duplikatschutz (kein doppeltes Eintragen)
+**What this plugin does NOT do:**
 
-**Englisch:**
+This plugin does not send marketing emails or newsletters. It only sends a single transactional notification per subscriber when the specific product they signed up for comes back in stock. All data is stored on your own server — no external services, no tracking.
 
-"Wieder verfügbar" (Back in Stock) shows a simple sign-up form on out-of-stock product pages. When the product becomes available again, all subscribers are automatically notified by email.
 
-**Features (Free):**
-
-* "Notify me" form on out-of-stock product pages
-* GDPR-compliant consent checkbox
-* Automatic email on stock status change
-* Customisable form texts, email subject and body ({product} and {link} placeholders)
-* Subscriber list in the WooCommerce admin
-* Duplicate prevention
-
-== Pro Version ==
-
-Wieder verfügbar Pro adds:
-
-* Double opt-in with email confirmation (fully GDPR-compliant)
-* Notifications at variation level (per product variant)
-* HTML emails with custom branding
-* CSV export of all subscribers
-* Statistics and conversion reports
-
-Upgrade at: https://products.kipphard.com/wieder-verfuegbar
+*Hinweis (DE): Dieses Plugin zeigt auf ausverkauften WooCommerce-Produktseiten ein „Benachrichtige mich"-Formular an und sendet eine automatische E-Mail, sobald das Produkt wieder auf Lager ist. Die Benutzeroberfläche ist auf Deutsch verfügbar.*
 
 == Installation ==
 
-1. Upload the `wieder-verfuegbar` folder to the `/wp-content/plugins/` directory.
+1. Upload the `kipphard-back-in-stock` folder to `/wp-content/plugins/`, or install it from the Plugins screen in your WordPress admin.
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. WooCommerce must be installed and activated.
-4. Go to WooCommerce → Wieder verfügbar to view subscribers.
-5. Go to WooCommerce → WVB Einstellungen to customise texts.
+4. Go to **WooCommerce → Back in Stock** to view the subscriber list.
+5. Go to **WooCommerce → Back in Stock Settings** to customise form texts, email subject, and email body.
 
 == Frequently Asked Questions ==
 
-= Wird WooCommerce benötigt? / Is WooCommerce required? =
+= Is WooCommerce required? =
 
-Ja. Das Plugin setzt WooCommerce voraus und zeigt einen Admin-Hinweis wenn WooCommerce nicht aktiv ist.
-Yes. The plugin requires WooCommerce and shows an admin notice if it is not active.
+Yes. The plugin requires WooCommerce and will show an admin notice if WooCommerce is not active.
 
-= Werden Daten beim Deinstallieren entfernt? / Is data removed on uninstall? =
+= Is data removed when I uninstall the plugin? =
 
-Ja. Beim Deinstallieren werden die Plugin-Einstellungen und die Abonnements-Tabelle vollständig entfernt.
-Yes. On uninstall, the plugin settings and subscriptions table are completely removed.
+Yes. On uninstall, the plugin settings and the subscriptions table are completely removed from your database.
+
+= Which placeholders can I use in the email? =
+
+Use `{product}` for the product name and `{link}` for the direct URL to the product page. Both are available in the email subject and body fields in the settings.
+
+= Does the form appear for products that are in stock? =
+
+No. The form is only rendered when a product's stock status is "Out of Stock". It is hidden automatically once the product is back in stock.
+
+= Is the plugin GDPR-compliant? =
+
+Yes. The sign-up form includes a required consent checkbox, and no data is sent to external servers — everything is stored on your own site.
+
+== Screenshots ==
+
+1. The "Notify me" form on an out-of-stock product page — heading, email field, and consent checkbox.
+2. Subscriber list in the WooCommerce admin: product, email address, and registration date.
+3. Settings page: form texts, email subject and body with `{product}` and `{link}` placeholders.
 
 == Changelog ==
 
+= 0.4.0 =
+* Renamed to Kipphard Back in Stock for WooCommerce. The free version is now fully functional with no license-gated features. Renamed all internal option/table/hook names to a unique plugin-specific prefix.
+
+= 0.3.1 =
+* Appearance settings translated to German (de_DE).
+
+= 0.3.0 =
+* Shared Kipphard design system (kip-ui) applied to the notify-me form for a consistent, theme-safe look.
+
+= 0.2.0 =
+* English source baseline with a German (de_DE) translation.
+
 = 0.1.0 =
-* Erste Veröffentlichung / Initial release.
+* Initial release.
+* "Notify me" form on out-of-stock WooCommerce product pages.
+* Custom database table for subscriptions with duplicate prevention.
+* Automatic plain-text email on stock status change; `{product}` and `{link}` placeholders.
+* Configurable form texts, email subject, and email body via WooCommerce settings.
+* Subscriber list in WooCommerce admin.
+* GDPR consent checkbox; all data stored locally — no external dependencies.
 
 == Upgrade Notice ==
 
-= 0.1.0 =
-Erste Version. / First version.
+= 0.4.0 =
+Renamed to Kipphard Back in Stock for WooCommerce; the free version is fully functional with no locked features.

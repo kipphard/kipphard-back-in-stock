@@ -1,0 +1,361 @@
+/**
+ * kip-ui — shared, theme-safe design system for the Kipphard plugin suite.
+ *
+ * Everything is scoped under `.kip-ui` and driven by CSS custom properties, so a
+ * plugin can recolour/restyle itself from settings by emitting a tiny inline
+ * <style> that overrides these variables — no rebuild, no JS. Presets are token
+ * bundles selected via [data-kip-preset]; dark mode via [data-kip-scheme].
+ *
+ * Defaults are deliberately neutral and inherit the theme's font so the suite
+ * blends into any WordPress site ("theme-adaptive"). Pick a preset for more.
+ */
+
+.kip-ui {
+	/* Palette */
+	--kip-accent: #2563eb;
+	--kip-accent-hover: #1d4ed8;
+	--kip-on-accent: #ffffff;
+	--kip-fg: #1f2329;
+	--kip-muted: #667085;
+	--kip-surface: #ffffff;
+	--kip-surface-2: #f6f7f9;
+	--kip-border: #e4e7ec;
+	--kip-border-strong: #d0d5dd;
+
+	/* Shape & depth */
+	--kip-radius: 12px;
+	--kip-radius-sm: 8px;
+	--kip-radius-pill: 999px;
+	--kip-shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
+	--kip-shadow-lg: 0 10px 30px -8px rgba(16, 24, 40, 0.18);
+	--kip-border-width: 1px;
+
+	/* Type & rhythm */
+	--kip-font: inherit;
+	--kip-fs: 15px;
+	--kip-gap: 16px;
+	--kip-pad: 16px;
+
+	/* Motion & focus */
+	--kip-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+	--kip-speed: 0.18s;
+	--kip-focus-ring: 0 0 0 3px color-mix(in srgb, var(--kip-accent) 32%, transparent);
+
+	color: var(--kip-fg);
+	font-family: var(--kip-font);
+	font-size: var(--kip-fs);
+	line-height: 1.5;
+	box-sizing: border-box;
+}
+.kip-ui *,
+.kip-ui *::before,
+.kip-ui *::after {
+	box-sizing: border-box;
+}
+
+/* ─── Presets (token bundles) ─────────────────────────────────────────────── */
+
+/* theme — adaptive & minimal: blends into the active theme. */
+.kip-ui[data-kip-preset="theme"] {
+	--kip-surface: transparent;
+	--kip-surface-2: transparent;
+	--kip-radius: 6px;
+	--kip-radius-sm: 4px;
+	--kip-shadow: none;
+	--kip-shadow-lg: none;
+	--kip-border: color-mix(in srgb, currentColor 14%, transparent);
+	--kip-border-strong: color-mix(in srgb, currentColor 28%, transparent);
+	--kip-fg: inherit;
+	--kip-muted: color-mix(in srgb, currentColor 62%, transparent);
+}
+
+/* soft — modern, friendly: rounded, light surfaces, gentle shadows (default vibe). */
+.kip-ui[data-kip-preset="soft"] {
+	--kip-radius: 16px;
+	--kip-radius-sm: 10px;
+	--kip-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 4px 12px -4px rgba(16, 24, 40, 0.1);
+	--kip-shadow-lg: 0 16px 40px -12px rgba(16, 24, 40, 0.22);
+	--kip-pad: 20px;
+	--kip-gap: 18px;
+}
+
+/* bold — confident: accent-forward, larger, stronger contrast. */
+.kip-ui[data-kip-preset="bold"] {
+	--kip-radius: 10px;
+	--kip-radius-sm: 8px;
+	--kip-border-width: 2px;
+	--kip-border: #1f2329;
+	--kip-border-strong: #1f2329;
+	--kip-shadow: 4px 4px 0 0 var(--kip-fg);
+	--kip-shadow-lg: 6px 6px 0 0 var(--kip-fg);
+	--kip-fs: 16px;
+	--kip-pad: 20px;
+}
+
+/* minimal — flat & quiet: thin borders, small radius, no shadow. */
+.kip-ui[data-kip-preset="minimal"] {
+	--kip-radius: 6px;
+	--kip-radius-sm: 4px;
+	--kip-shadow: none;
+	--kip-shadow-lg: none;
+	--kip-surface-2: transparent;
+}
+
+/* ─── Dark scheme ─────────────────────────────────────────────────────────── */
+
+.kip-ui[data-kip-scheme="dark"] {
+	--kip-fg: #e7eaee;
+	--kip-muted: #98a2b3;
+	--kip-surface: #1b1f27;
+	--kip-surface-2: #232834;
+	--kip-border: #2f3543;
+	--kip-border-strong: #3d4453;
+	--kip-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 16px -6px rgba(0, 0, 0, 0.5);
+	--kip-shadow-lg: 0 18px 44px -12px rgba(0, 0, 0, 0.6);
+}
+@media (prefers-color-scheme: dark) {
+	.kip-ui[data-kip-scheme="auto"] {
+		--kip-fg: #e7eaee;
+		--kip-muted: #98a2b3;
+		--kip-surface: #1b1f27;
+		--kip-surface-2: #232834;
+		--kip-border: #2f3543;
+		--kip-border-strong: #3d4453;
+		--kip-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 16px -6px rgba(0, 0, 0, 0.5);
+		--kip-shadow-lg: 0 18px 44px -12px rgba(0, 0, 0, 0.6);
+	}
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────────────── */
+
+.kip-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 44px;
+	padding: 10px 18px;
+	border: var(--kip-border-width) solid transparent;
+	border-radius: var(--kip-radius-pill);
+	background: var(--kip-surface-2);
+	color: var(--kip-fg);
+	font: inherit;
+	font-weight: 600;
+	line-height: 1.1;
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform var(--kip-speed) var(--kip-ease),
+		background var(--kip-speed) var(--kip-ease), border-color var(--kip-speed) var(--kip-ease),
+		box-shadow var(--kip-speed) var(--kip-ease), color var(--kip-speed) var(--kip-ease);
+}
+.kip-btn:hover {
+	transform: translateY(-1px);
+}
+.kip-btn:active {
+	transform: translateY(0);
+}
+.kip-btn:focus-visible {
+	outline: none;
+	box-shadow: var(--kip-focus-ring);
+}
+.kip-btn--primary {
+	background: var(--kip-accent);
+	border-color: var(--kip-accent);
+	color: var(--kip-on-accent);
+}
+.kip-btn--primary:hover {
+	background: var(--kip-accent-hover);
+	border-color: var(--kip-accent-hover);
+}
+.kip-btn--ghost {
+	background: transparent;
+	border-color: var(--kip-border-strong);
+	color: var(--kip-fg);
+}
+.kip-btn--ghost:hover {
+	border-color: var(--kip-accent);
+	color: var(--kip-accent);
+}
+.kip-btn--sm {
+	min-height: 36px;
+	padding: 7px 14px;
+	font-size: 0.9em;
+}
+.kip-btn--block {
+	width: 100%;
+}
+.kip-btn--icon {
+	min-height: 40px;
+	min-width: 40px;
+	padding: 8px;
+	border-radius: var(--kip-radius-pill);
+}
+
+/* ─── Cards & layout ──────────────────────────────────────────────────────── */
+
+.kip-card {
+	background: var(--kip-surface);
+	border: var(--kip-border-width) solid var(--kip-border);
+	border-radius: var(--kip-radius);
+	box-shadow: var(--kip-shadow);
+	overflow: hidden;
+}
+
+.kip-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: var(--kip-gap);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.kip-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--kip-gap);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* ─── Badge ───────────────────────────────────────────────────────────────── */
+
+.kip-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 3px 10px;
+	border-radius: var(--kip-radius-pill);
+	background: color-mix(in srgb, var(--kip-accent) 12%, transparent);
+	color: var(--kip-accent);
+	font-size: 0.78em;
+	font-weight: 600;
+	letter-spacing: 0.01em;
+}
+
+/* ─── Table ───────────────────────────────────────────────────────────────── */
+
+.kip-table {
+	width: 100%;
+	border-collapse: collapse;
+	background: var(--kip-surface);
+	border: var(--kip-border-width) solid var(--kip-border);
+	border-radius: var(--kip-radius);
+	overflow: hidden;
+}
+.kip-table th,
+.kip-table td {
+	padding: 12px 16px;
+	text-align: left;
+	border-bottom: 1px solid var(--kip-border);
+}
+.kip-table thead th {
+	background: var(--kip-surface-2);
+	font-size: 0.82em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--kip-muted);
+}
+.kip-table tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+/* ─── Form fields ─────────────────────────────────────────────────────────── */
+
+.kip-field {
+	width: 100%;
+	padding: 11px 14px;
+	border: var(--kip-border-width) solid var(--kip-border-strong);
+	border-radius: var(--kip-radius-sm);
+	background: var(--kip-surface);
+	color: var(--kip-fg);
+	font: inherit;
+	transition: border-color var(--kip-speed) var(--kip-ease), box-shadow var(--kip-speed) var(--kip-ease);
+}
+.kip-field:focus {
+	outline: none;
+	border-color: var(--kip-accent);
+	box-shadow: var(--kip-focus-ring);
+}
+.kip-label {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: 600;
+	font-size: 0.9em;
+}
+
+/* ─── Empty state ─────────────────────────────────────────────────────────── */
+
+.kip-empty {
+	padding: clamp(28px, 6vw, 56px) 20px;
+	text-align: center;
+	color: var(--kip-muted);
+	background: var(--kip-surface-2);
+	border: 1px dashed var(--kip-border-strong);
+	border-radius: var(--kip-radius);
+}
+
+/* ─── Notice / toast ──────────────────────────────────────────────────────── */
+
+.kip-notice {
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	z-index: 99999;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	max-width: min(92vw, 380px);
+	padding: 14px 18px;
+	border-radius: var(--kip-radius-sm);
+	background: var(--kip-surface);
+	color: var(--kip-fg);
+	border: 1px solid var(--kip-border);
+	box-shadow: var(--kip-shadow-lg);
+	opacity: 0;
+	transform: translateY(10px);
+	transition: opacity var(--kip-speed) var(--kip-ease), transform var(--kip-speed) var(--kip-ease);
+	pointer-events: none;
+}
+.kip-notice.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+.kip-notice::before {
+	content: "";
+	flex: 0 0 auto;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--kip-accent);
+}
+.kip-notice--success::before {
+	background: #12b76a;
+}
+.kip-notice--error::before {
+	background: #f04438;
+}
+.kip-notice__link {
+	margin-left: auto;
+	color: var(--kip-accent);
+	font-weight: 600;
+	text-decoration: underline;
+	pointer-events: auto; /* the toast is click-through; keep the action clickable */
+	white-space: nowrap;
+}
+
+/* ─── Accessibility niceties ──────────────────────────────────────────────── */
+
+.kip-ui :focus-visible {
+	outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+	.kip-ui *,
+	.kip-notice {
+		transition-duration: 0.001ms !important;
+	}
+	.kip-btn:hover {
+		transform: none;
+	}
+}

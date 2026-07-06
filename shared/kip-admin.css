@@ -1,0 +1,117 @@
+/**
+ * kip-admin — shared, light polish for the Kipphard plugin settings pages so the
+ * whole suite feels like one premium product in wp-admin. Scoped under `.kip-admin`
+ * (added to the settings page `.wrap`); enhances WP's defaults, never fights them.
+ */
+
+.kip-admin {
+	--kipa-accent: #f0834e;
+	--kipa-ink: #1d2327;
+	--kipa-muted: #646970;
+	--kipa-border: #dcdfe4;
+	--kipa-surface: #fff;
+	max-width: 920px;
+}
+
+/* Header */
+.kip-admin > h1 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 23px;
+	font-weight: 700;
+	padding: 4px 0 14px;
+	margin: 0 0 16px;
+	border-bottom: 1px solid var(--kipa-border);
+}
+.kip-admin > h1::before {
+	content: "";
+	width: 6px;
+	align-self: stretch;
+	min-height: 24px;
+	border-radius: 3px;
+	background: var(--kipa-accent);
+}
+.kip-admin__suite {
+	margin-left: auto;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--kipa-muted);
+}
+
+/* Section headings within the form */
+.kip-admin h2.title {
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	color: var(--kipa-muted);
+	margin: 28px 0 4px;
+}
+
+/* Card-wrap the settings form + sections */
+.kip-admin form .form-table {
+	background: var(--kipa-surface);
+	border: 1px solid var(--kipa-border);
+	border-radius: 10px;
+	box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+	padding: 6px 22px;
+	margin-top: 10px;
+}
+.kip-admin .form-table th {
+	font-weight: 600;
+	color: var(--kipa-ink);
+}
+.kip-admin .form-table td input[type="text"],
+.kip-admin .form-table td input[type="number"],
+.kip-admin .form-table td input[type="email"],
+.kip-admin .form-table td input[type="url"],
+.kip-admin .form-table td select,
+.kip-admin .form-table td textarea {
+	border-radius: 7px;
+	border-color: var(--kipa-border);
+}
+.kip-admin .form-table td input:focus,
+.kip-admin .form-table td select:focus,
+.kip-admin .form-table td textarea:focus {
+	border-color: var(--kipa-accent);
+	box-shadow: 0 0 0 1px var(--kipa-accent);
+}
+
+/* Primary action */
+.kip-admin .button-primary {
+	background: var(--kipa-accent);
+	border-color: var(--kipa-accent);
+	color: #fff;
+	border-radius: 7px;
+	box-shadow: none;
+	text-shadow: none;
+}
+.kip-admin .button-primary:hover,
+.kip-admin .button-primary:focus {
+	background: #e0703a;
+	border-color: #e0703a;
+}
+
+/* Pro badge + teaser/info cards */
+.kip-admin .kip-pro-tag {
+	background: #efeaff;
+}
+.kip-admin .card {
+	border-radius: 10px;
+	border-color: var(--kipa-border);
+}
+
+/* Accent the color-picker swatch (used by the Appearance tab) */
+.kip-admin input[type="color"] {
+	width: 48px;
+	height: 32px;
+	padding: 2px;
+	border: 1px solid var(--kipa-border);
+	border-radius: 7px;
+	background: #fff;
+	cursor: pointer;
+	vertical-align: middle;
+}

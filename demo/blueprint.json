@@ -23,7 +23,7 @@
       "step": "installPlugin",
       "pluginData": {
         "resource": "url",
-        "url": "https://github.com/kipphard/back-in-stock/releases/download/v0.3.1/back-in-stock-0.3.1.zip"
+        "url": "https://github.com/kipphard/kipphard-back-in-stock/releases/download/v0.4.0/kipphard-back-in-stock-0.4.0.zip"
       },
       "options": {
         "activate": true
@@ -38,7 +38,7 @@
       "path": "/wordpress/wp-content/mu-plugins/kip-demo-panel.php",
       "data": {
         "resource": "url",
-        "url": "https://raw.githubusercontent.com/kipphard/back-in-stock/main/demo/kip-demo-panel.php"
+        "url": "https://raw.githubusercontent.com/kipphard/kipphard-back-in-stock/main/demo/kip-demo-panel.php"
       }
     },
     {

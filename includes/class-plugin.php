@@ -46,11 +46,7 @@ final class Plugin {
 	 * Laufzeit-Hooks registrieren.
 	 */
 	public function boot() {
-		load_plugin_textdomain(
-			'wieder-verfuegbar',
-			false,
-			dirname( plugin_basename( WVB_FILE ) ) . '/languages'
-		);
+		// Translations load automatically (WP 4.6+ just-in-time): WordPress.org language packs by slug + the bundled languages/kipphard-back-in-stock-<locale>.mo.
 
 		// WooCommerce ist Pflicht – ohne es läuft nichts.
 		if ( ! class_exists( 'WooCommerce' ) ) {
@@ -78,8 +74,8 @@ final class Plugin {
 		?>
 		<div class="notice notice-error">
 			<p>
-				<strong><?php esc_html_e( 'Wieder verfügbar', 'wieder-verfuegbar' ); ?>:</strong>
-				<?php esc_html_e( 'WooCommerce muss installiert und aktiviert sein, damit dieses Plugin funktioniert.', 'wieder-verfuegbar' ); ?>
+				<strong><?php esc_html_e( 'Back in Stock', 'kipphard-back-in-stock' ); ?>:</strong>
+				<?php esc_html_e( 'WooCommerce must be installed and activated for this plugin to work.', 'kipphard-back-in-stock' ); ?>
 			</p>
 		</div>
 		<?php

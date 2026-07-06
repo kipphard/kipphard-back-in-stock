@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR André Kipphard
+# This file is distributed under the same license as the kipphard-back-in-stock package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: kipphard-back-in-stock 0.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-06 17:44+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: includes/class-admin.php:35 includes/class-admin.php:145
+msgid "Back in Stock – Subscriptions"
+msgstr ""
+
+#: includes/class-admin.php:36 includes/class-plugin.php:77
+msgid "Back in Stock"
+msgstr ""
+
+#: includes/class-admin.php:43 includes/class-admin.php:242
+msgid "Back in Stock – Settings"
+msgstr ""
+
+#: includes/class-admin.php:44
+msgid "Back in Stock Settings"
+msgstr ""
+
+#. translators: %d: Anzahl aktiver Abonnements
+#: includes/class-admin.php:151
+#, php-format
+msgid "Total active subscriptions: %d"
+msgstr ""
+
+#: includes/class-admin.php:158
+msgid "No subscriptions yet."
+msgstr ""
+
+#: includes/class-admin.php:163
+msgid "ID"
+msgstr ""
+
+#: includes/class-admin.php:164
+msgid "Product"
+msgstr ""
+
+#: includes/class-admin.php:165
+msgid "Email"
+msgstr ""
+
+#: includes/class-admin.php:166
+msgid "Status"
+msgstr ""
+
+#: includes/class-admin.php:167
+msgid "Date"
+msgstr ""
+
+#: includes/class-admin.php:246
+msgid "Settings saved."
+msgstr ""
+
+#: includes/class-admin.php:257
+msgid "Form Heading"
+msgstr ""
+
+#: includes/class-admin.php:266
+msgid "Button Label"
+msgstr ""
+
+#: includes/class-admin.php:275
+msgid "Consent Text (GDPR)"
+msgstr ""
+
+#: includes/class-admin.php:284
+msgid "Email Subject"
+msgstr ""
+
+#: includes/class-admin.php:290
+msgid "Placeholder: {product}"
+msgstr ""
+
+#: includes/class-admin.php:296
+msgid "Email Body"
+msgstr ""
+
+#: includes/class-admin.php:301
+msgid "Placeholders: {product}, {link}"
+msgstr ""
+
+#: includes/class-admin.php:307
+msgid "Success Message"
+msgstr ""
+
+#: includes/class-admin.php:316
+msgid "Error Message"
+msgstr ""
+
+#: includes/class-admin.php:326
+msgid "Appearance"
+msgstr ""
+
+#: includes/class-admin.php:332
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-double-optin.php:103
+msgid "Invalid confirmation link."
+msgstr ""
+
+#: includes/class-double-optin.php:118
+msgid "The confirmation link is invalid or has already been used."
+msgstr ""
+
+#: includes/class-double-optin.php:137
+msgid "Subscription confirmed"
+msgstr ""
+
+#. translators: %s: Produktname
+#: includes/class-double-optin.php:145
+#, php-format
+msgid ""
+"Your back-in-stock notification for \"%s\" has been successfully activated."
+msgstr ""
+
+#: includes/class-double-optin.php:151
+msgid "Back to shop"
+msgstr ""
+
+#. translators: %s: Produktname
+#: includes/class-double-optin.php:172
+#, php-format
+msgid "Please confirm your back-in-stock notification for \"%s\""
+msgstr ""
+
+#: includes/class-double-optin.php:176
+msgid "Please confirm your subscription for the back-in-stock notification:"
+msgstr ""
+
+#: includes/class-double-optin.php:178
+msgid "If you did not make this request, you can ignore this email."
+msgstr ""
+
+#: includes/class-frontend.php:107
+msgid "Email address"
+msgstr ""
+
+#: includes/class-frontend.php:116
+msgid "your@email.com"
+msgstr ""
+
+#: includes/class-frontend.php:153
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: includes/class-frontend.php:161
+msgid "Please agree to receive the notification."
+msgstr ""
+
+#: includes/class-frontend.php:169 includes/class-frontend.php:177
+msgid "Invalid product."
+msgstr ""
+
+#: includes/class-frontend.php:186
+msgid "This product is already in stock."
+msgstr ""
+
+#: includes/class-frontend.php:195
+msgid "Please confirm your email address. We have sent you an email."
+msgstr ""
+
+#: includes/class-helpers.php:100
+msgid "Permission denied."
+msgstr ""
+
+#: includes/class-plugin.php:78
+msgid "WooCommerce must be installed and activated for this plugin to work."
+msgstr ""

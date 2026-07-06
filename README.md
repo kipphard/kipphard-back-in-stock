@@ -1,31 +1,28 @@
-# Wieder verfügbar — Back in Stock notifications for WooCommerce
+# Kipphard Back in Stock for WooCommerce
 
-Show a "notify me when it's back" form on **out-of-stock** WooCommerce products. Customers
-leave their email; when you restock, everyone is emailed automatically — recovering sales
-you'd otherwise lose.
+"Notify me" for out-of-stock WooCommerce products: visitors subscribe on the product page and get an automatic email when you restock.
 
 ## ▶ Live demo (no install)
 
-**[Open the demo in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/kipphard/wieder-verfuegbar/main/demo/blueprint.json)**
-— a WooCommerce shop with an out-of-stock product showing the notify-me form, in your browser.
+**[Open the demo in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/kipphard/kipphard-back-in-stock/main/demo/blueprint.json)**
+— a full WordPress with the plugin installed and demo content seeded, running entirely in your browser.
 
 ## Install
 
-Requires **WooCommerce**. Download the latest
-[release](https://github.com/kipphard/wieder-verfuegbar/releases) zip → WordPress admin →
-*Plugins → Add New → Upload Plugin → Activate*.
+Download the latest [release](https://github.com/kipphard/kipphard-back-in-stock/releases) zip
+→ WordPress admin → *Plugins → Add New → Upload Plugin → Activate*.
 
 ## Features (free)
 
-- "Notify me" form shown automatically on out-of-stock products — no setup
-- Email subscriptions stored; **automatic notification when the product is back in stock**
-- GDPR consent checkbox; admin subscription list + configurable texts/email
-- Bilingual (German + English)
+- Notify-me form on out-of-stock product pages
+- Automatic email on restock (custom table, no CPT bloat)
+- Subscriber admin list with status
+- kip-ui design presets + accent
 
 ## Pro (coming soon)
 
-Double opt-in · variation-level notifications · HTML email templates · CSV export · stats →
-**[products.kipphard.com/wieder-verfuegbar](https://products.kipphard.com/wieder-verfuegbar)**
+Double opt-in confirmation emails · variation-level notifications · CSV export · stats →
+**[kipphard.com/products/wieder-verfuegbar](https://kipphard.com/products/wieder-verfuegbar)**
 
 ## License
 

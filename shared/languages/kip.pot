@@ -1,0 +1,108 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-26 14:02+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/class-appearance.php:55
+msgid "Theme (adaptive)"
+msgstr ""
+
+#: src/class-appearance.php:56
+msgid "Soft"
+msgstr ""
+
+#: src/class-appearance.php:57
+msgid "Bold"
+msgstr ""
+
+#: src/class-appearance.php:58
+msgid "Minimal"
+msgstr ""
+
+#: src/class-appearance.php:239
+msgid "Use plugin styling"
+msgstr ""
+
+#: src/class-appearance.php:243
+msgid "Apply the built-in design (uncheck to inherit your theme completely)."
+msgstr ""
+
+#: src/class-appearance.php:248
+msgid "Design preset"
+msgstr ""
+
+#: src/class-appearance.php:259
+msgid ""
+"A one-click look. \"Theme\" blends into your site; \"Soft\" is the modern "
+"default."
+msgstr ""
+
+#: src/class-appearance.php:263
+msgid "Accent colour"
+msgstr ""
+
+#: src/class-appearance.php:269
+msgid "Layout"
+msgstr ""
+
+#: src/class-appearance.php:272
+msgid "Grid (cards)"
+msgstr ""
+
+#: src/class-appearance.php:273
+msgid "List"
+msgstr ""
+
+#: src/class-appearance.php:274
+msgid "Table"
+msgstr ""
+
+#: src/class-appearance.php:279
+msgid "Colour scheme"
+msgstr ""
+
+#: src/class-appearance.php:282
+msgid "Auto (follow device)"
+msgstr ""
+
+#: src/class-appearance.php:283
+msgid "Light"
+msgstr ""
+
+#: src/class-appearance.php:284
+msgid "Dark"
+msgstr ""
+
+#: src/class-appearance.php:289
+msgid "Font family"
+msgstr ""
+
+#: src/class-appearance.php:292
+msgid "Inherit theme font"
+msgstr ""
+
+#: src/class-appearance.php:296
+msgid "Corner radius (px)"
+msgstr ""
+
+#: src/class-appearance.php:299
+msgid "Preset default"
+msgstr ""
+
+#: src/class-appearance.php:303
+msgid "Custom CSS"
+msgstr ""

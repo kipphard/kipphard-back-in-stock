@@ -45,7 +45,7 @@
 			submitBtn.disabled = true;
 		}
 
-		var params = 'action=wvb_subscribe'
+		var params = 'action=kipphard_back_in_stock_subscribe'
 			+ '&nonce=' + encodeURIComponent( data.nonce || '' )
 			+ '&product_id=' + encodeURIComponent( productId.value )
 			+ '&email=' + encodeURIComponent( emailEl.value )
@@ -71,11 +71,11 @@
 				} else {
 					var errMsg = ( result.data && result.data.message )
 						? result.data.message
-						: ( data.i18n && data.i18n.error ) || 'Fehler';
+						: ( data.i18n && data.i18n.error ) || 'Error';
 					showMessage( wrap, errMsg, false );
 				}
 			} catch ( ex ) {
-				showMessage( wrap, ( data.i18n && data.i18n.error ) || 'Fehler', false );
+				showMessage( wrap, ( data.i18n && data.i18n.error ) || 'Error', false );
 			}
 		};
 		xhr.send( params );

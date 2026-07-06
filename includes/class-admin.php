@@ -23,7 +23,7 @@ class Admin {
 	public function hooks() {
 		add_action( 'admin_menu', array( $this, 'register_menus' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
-		add_action( 'admin_post_wvb_save_settings', array( $this, 'handle_save_settings' ) );
+		add_action( 'admin_post_kipphard_back_in_stock_save_settings', array( $this, 'handle_save_settings' ) );
 	}
 
 	/**
@@ -32,18 +32,18 @@ class Admin {
 	public function register_menus() {
 		add_submenu_page(
 			'woocommerce',
-			__( 'Wieder verfügbar – Abonnements', 'wieder-verfuegbar' ),
-			__( 'Wieder verfügbar', 'wieder-verfuegbar' ),
+			__( 'Back in Stock – Subscriptions', 'kipphard-back-in-stock' ),
+			__( 'Back in Stock', 'kipphard-back-in-stock' ),
 			Helpers::CAP,
-			WVB_SLUG,
+			KIPPHARD_BACK_IN_STOCK_SLUG,
 			array( $this, 'render_subscriptions' )
 		);
 		add_submenu_page(
 			'woocommerce',
-			__( 'Wieder verfügbar – Einstellungen', 'wieder-verfuegbar' ),
-			__( 'WVB Einstellungen', 'wieder-verfuegbar' ),
+			__( 'Back in Stock – Settings', 'kipphard-back-in-stock' ),
+			__( 'Back in Stock Settings', 'kipphard-back-in-stock' ),
 			Helpers::CAP,
-			WVB_SLUG . '-settings',
+			KIPPHARD_BACK_IN_STOCK_SLUG . '-settings',
 			array( $this, 'render_settings' )
 		);
 	}
@@ -55,25 +55,32 @@ class Admin {
 	 */
 	public function enqueue_assets( $hook ) {
 		$pages = array(
-			'woocommerce_page_' . WVB_SLUG,
-			'woocommerce_page_' . WVB_SLUG . '-settings',
+			'woocommerce_page_' . KIPPHARD_BACK_IN_STOCK_SLUG,
+			'woocommerce_page_' . KIPPHARD_BACK_IN_STOCK_SLUG . '-settings',
 		);
 		if ( ! in_array( $hook, $pages, true ) ) {
 			return;
 		}
 		wp_enqueue_style(
 			'wvb-admin',
-			WVB_URL . 'assets/admin.css',
+			KIPPHARD_BACK_IN_STOCK_URL . 'assets/admin.css',
 			array(),
-			WVB_VERSION
+			KIPPHARD_BACK_IN_STOCK_VERSION
 		);
 		wp_enqueue_script(
 			'wvb-admin',
-			WVB_URL . 'assets/admin.js',
+			KIPPHARD_BACK_IN_STOCK_URL . 'assets/admin.js',
 			array(),
-			WVB_VERSION,
+			KIPPHARD_BACK_IN_STOCK_VERSION,
 			true
 		);
+
+		// kip-admin.css nur auf der Einstellungsseite.
+		if ( 'woocommerce_page_' . KIPPHARD_BACK_IN_STOCK_SLUG . '-settings' === $hook ) {
+			if ( is_readable( KIPPHARD_BACK_IN_STOCK_DIR . 'shared/kip-admin.css' ) ) {
+				wp_enqueue_style( 'kip-admin', KIPPHARD_BACK_IN_STOCK_URL . 'shared/kip-admin.css', array(), KIPPHARD_BACK_IN_STOCK_VERSION );
+			}
+		}
 	}
 
 	// -------------------------------------------------------------------------
@@ -84,15 +91,16 @@ class Admin {
 	 * Einstellungen speichern.
 	 */
 	public function handle_save_settings() {
-		Helpers::guard_post( 'wvb_save_settings' );
+		Helpers::guard_post( 'kipphard_back_in_stock_save_settings' );
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce verified in Helpers::guard_post() above.
 		$clean = Helpers::sanitize_settings( $_POST );
 		update_option( Helpers::OPT_SETTINGS, $clean );
 
 		wp_safe_redirect(
 			add_query_arg(
 				array(
-					'page'   => WVB_SLUG . '-settings',
+					'page'   => KIPPHARD_BACK_IN_STOCK_SLUG . '-settings',
 					'notice' => 'saved',
 				),
 				admin_url( 'admin.php' )
@@ -116,6 +124,7 @@ class Admin {
 		global $wpdb;
 		$table = Helpers::table();
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only display value, no state change.
 		$current_page = isset( $_GET['paged'] ) ? absint( $_GET['paged'] ) : 1;
 		$current_page = max( 1, $current_page );
 		$offset       = ( $current_page - 1 ) * self::PER_PAGE;
@@ -133,29 +142,29 @@ class Admin {
 		$total_pages = $total > 0 ? ceil( $total / self::PER_PAGE ) : 1;
 		?>
 		<div class="wrap wvb-wrap">
-			<h1><?php esc_html_e( 'Wieder verfügbar – Abonnements', 'wieder-verfuegbar' ); ?></h1>
+			<h1><?php esc_html_e( 'Back in Stock – Subscriptions', 'kipphard-back-in-stock' ); ?></h1>
 
 			<p>
 				<?php
 				printf(
 					/* translators: %d: Anzahl aktiver Abonnements */
-					esc_html__( 'Aktive Abonnements gesamt: %d', 'wieder-verfuegbar' ),
+					esc_html__( 'Total active subscriptions: %d', 'kipphard-back-in-stock' ),
 					Subscriptions::count_active()
 				);
 				?>
 			</p>
 
 			<?php if ( empty( $rows ) ) : ?>
-				<p><?php esc_html_e( 'Noch keine Abonnements vorhanden.', 'wieder-verfuegbar' ); ?></p>
+				<p><?php esc_html_e( 'No subscriptions yet.', 'kipphard-back-in-stock' ); ?></p>
 			<?php else : ?>
 				<table class="wp-list-table widefat fixed striped wvb-subscriptions-table">
 					<thead>
 						<tr>
-							<th><?php esc_html_e( 'ID', 'wieder-verfuegbar' ); ?></th>
-							<th><?php esc_html_e( 'Produkt', 'wieder-verfuegbar' ); ?></th>
-							<th><?php esc_html_e( 'E-Mail', 'wieder-verfuegbar' ); ?></th>
-							<th><?php esc_html_e( 'Status', 'wieder-verfuegbar' ); ?></th>
-							<th><?php esc_html_e( 'Datum', 'wieder-verfuegbar' ); ?></th>
+							<th><?php esc_html_e( 'ID', 'kipphard-back-in-stock' ); ?></th>
+							<th><?php esc_html_e( 'Product', 'kipphard-back-in-stock' ); ?></th>
+							<th><?php esc_html_e( 'Email', 'kipphard-back-in-stock' ); ?></th>
+							<th><?php esc_html_e( 'Status', 'kipphard-back-in-stock' ); ?></th>
+							<th><?php esc_html_e( 'Date', 'kipphard-back-in-stock' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -204,31 +213,6 @@ class Admin {
 
 			<?php endif; ?>
 
-			<?php if ( Helpers::is_pro() ) : ?>
-
-				<hr>
-				<div class="card wvb-pro-actions" style="max-width:680px;padding:20px 24px;margin-top:20px;">
-					<h2><?php esc_html_e( 'Pro-Aktionen', 'wieder-verfuegbar' ); ?></h2>
-					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-						<input type="hidden" name="action" value="wvb_export_csv">
-						<?php wp_nonce_field( 'wvb_export_csv' ); ?>
-						<button type="submit" class="button button-secondary">
-							<?php esc_html_e( 'CSV exportieren', 'wieder-verfuegbar' ); ?>
-						</button>
-					</form>
-					<p style="margin-top:12px;">
-						<?php
-						printf(
-							/* translators: %d: Gesamtanzahl der Abonnements */
-							esc_html__( 'Abonnements gesamt: %d', 'wieder-verfuegbar' ),
-							(int) $total
-						);
-						?>
-					</p>
-				</div>
-
-			<?php endif; ?>
-
 		</div>
 		<?php
 	}
@@ -241,8 +225,8 @@ class Admin {
 			return;
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only display value, no state change.
 		$notice   = isset( $_GET['notice'] ) ? sanitize_key( $_GET['notice'] ) : '';
-		$is_pro   = Helpers::is_pro();
 		$settings = (array) get_option( Helpers::OPT_SETTINGS, array() );
 		$defaults = Helpers::defaults();
 
@@ -254,23 +238,23 @@ class Admin {
 		$msg_success   = isset( $settings['msg_success'] ) ? $settings['msg_success'] : $defaults['msg_success'];
 		$msg_error     = isset( $settings['msg_error'] ) ? $settings['msg_error'] : $defaults['msg_error'];
 		?>
-		<div class="wrap wvb-wrap">
-			<h1><?php esc_html_e( 'Wieder verfügbar – Einstellungen', 'wieder-verfuegbar' ); ?></h1>
+		<div class="wrap wvb-wrap kip-admin">
+			<h1><?php esc_html_e( 'Back in Stock – Settings', 'kipphard-back-in-stock' ); ?><span class="kip-admin__suite">Kipphard</span></h1>
 
 			<?php if ( 'saved' === $notice ) : ?>
 				<div class="notice notice-success is-dismissible">
-					<p><?php esc_html_e( 'Einstellungen gespeichert.', 'wieder-verfuegbar' ); ?></p>
+					<p><?php esc_html_e( 'Settings saved.', 'kipphard-back-in-stock' ); ?></p>
 				</div>
 			<?php endif; ?>
 
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-				<input type="hidden" name="action" value="wvb_save_settings">
-				<?php wp_nonce_field( 'wvb_save_settings' ); ?>
+				<input type="hidden" name="action" value="kipphard_back_in_stock_save_settings">
+				<?php wp_nonce_field( 'kipphard_back_in_stock_save_settings' ); ?>
 
 				<table class="form-table" role="presentation">
 					<tr>
 						<th scope="row">
-							<label for="wvb-heading"><?php esc_html_e( 'Formular-Überschrift', 'wieder-verfuegbar' ); ?></label>
+							<label for="wvb-heading"><?php esc_html_e( 'Form Heading', 'kipphard-back-in-stock' ); ?></label>
 						</th>
 						<td>
 							<input type="text" id="wvb-heading" name="heading" class="regular-text"
@@ -279,7 +263,7 @@ class Admin {
 					</tr>
 					<tr>
 						<th scope="row">
-							<label for="wvb-button-label"><?php esc_html_e( 'Button-Beschriftung', 'wieder-verfuegbar' ); ?></label>
+							<label for="wvb-button-label"><?php esc_html_e( 'Button Label', 'kipphard-back-in-stock' ); ?></label>
 						</th>
 						<td>
 							<input type="text" id="wvb-button-label" name="button_label" class="regular-text"
@@ -288,7 +272,7 @@ class Admin {
 					</tr>
 					<tr>
 						<th scope="row">
-							<label for="wvb-consent-text"><?php esc_html_e( 'Einwilligungstext (DSGVO)', 'wieder-verfuegbar' ); ?></label>
+							<label for="wvb-consent-text"><?php esc_html_e( 'Consent Text (GDPR)', 'kipphard-back-in-stock' ); ?></label>
 						</th>
 						<td>
 							<input type="text" id="wvb-consent-text" name="consent_text" class="large-text"
@@ -297,30 +281,30 @@ class Admin {
 					</tr>
 					<tr>
 						<th scope="row">
-							<label for="wvb-email-subject"><?php esc_html_e( 'E-Mail-Betreff', 'wieder-verfuegbar' ); ?></label>
+							<label for="wvb-email-subject"><?php esc_html_e( 'Email Subject', 'kipphard-back-in-stock' ); ?></label>
 						</th>
 						<td>
 							<input type="text" id="wvb-email-subject" name="email_subject" class="large-text"
 								value="<?php echo esc_attr( $email_subject ); ?>">
 							<p class="description">
-								<?php esc_html_e( 'Platzhalter: {product}', 'wieder-verfuegbar' ); ?>
+								<?php esc_html_e( 'Placeholder: {product}', 'kipphard-back-in-stock' ); ?>
 							</p>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">
-							<label for="wvb-email-body"><?php esc_html_e( 'E-Mail-Text', 'wieder-verfuegbar' ); ?></label>
+							<label for="wvb-email-body"><?php esc_html_e( 'Email Body', 'kipphard-back-in-stock' ); ?></label>
 						</th>
 						<td>
 							<textarea id="wvb-email-body" name="email_body" rows="8" class="large-text"><?php echo esc_textarea( $email_body ); ?></textarea>
 							<p class="description">
-								<?php esc_html_e( 'Platzhalter: {product}, {link}', 'wieder-verfuegbar' ); ?>
+								<?php esc_html_e( 'Placeholders: {product}, {link}', 'kipphard-back-in-stock' ); ?>
 							</p>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">
-							<label for="wvb-msg-success"><?php esc_html_e( 'Erfolgsmeldung', 'wieder-verfuegbar' ); ?></label>
+							<label for="wvb-msg-success"><?php esc_html_e( 'Success Message', 'kipphard-back-in-stock' ); ?></label>
 						</th>
 						<td>
 							<input type="text" id="wvb-msg-success" name="msg_success" class="large-text"
@@ -329,7 +313,7 @@ class Admin {
 					</tr>
 					<tr>
 						<th scope="row">
-							<label for="wvb-msg-error"><?php esc_html_e( 'Fehlermeldung', 'wieder-verfuegbar' ); ?></label>
+							<label for="wvb-msg-error"><?php esc_html_e( 'Error Message', 'kipphard-back-in-stock' ); ?></label>
 						</th>
 						<td>
 							<input type="text" id="wvb-msg-error" name="msg_error" class="large-text"
@@ -338,59 +322,15 @@ class Admin {
 					</tr>
 				</table>
 
-				<?php submit_button( __( 'Einstellungen speichern', 'wieder-verfuegbar' ) ); ?>
+				<?php if ( class_exists( '\Kipphard\Shared\Appearance' ) ) : ?>
+					<h2 class="title"><?php esc_html_e( 'Appearance', 'kipphard-back-in-stock' ); ?></h2>
+					<table class="form-table" role="presentation">
+						<?php \Kipphard\Shared\Appearance::render_fields( $settings ); ?>
+					</table>
+				<?php endif; ?>
+
+				<?php submit_button( __( 'Save Settings', 'kipphard-back-in-stock' ) ); ?>
 			</form>
-
-			<?php if ( $is_pro ) : ?>
-
-				<hr>
-				<div class="card wvb-pro-settings" style="max-width:680px;padding:20px 24px;margin-top:20px;">
-					<h2><?php esc_html_e( 'Pro-Funktionen', 'wieder-verfuegbar' ); ?></h2>
-					<p><?php esc_html_e( 'Wieder verfügbar Pro ist aktiv.', 'wieder-verfuegbar' ); ?></p>
-					<ul>
-						<li><?php esc_html_e( 'Double-Opt-in: E-Mail-Bestätigung vor Aktivierung des Abonnements', 'wieder-verfuegbar' ); ?></li>
-						<li><?php esc_html_e( 'Variationsebene: Benachrichtigung pro Produktvariante', 'wieder-verfuegbar' ); ?></li>
-						<li><?php esc_html_e( 'HTML-E-Mails mit eigenem Template', 'wieder-verfuegbar' ); ?></li>
-						<li><?php esc_html_e( 'CSV-Export aller Abonnements', 'wieder-verfuegbar' ); ?></li>
-						<li><?php esc_html_e( 'Statistiken: Öffnungsraten, Konversionen', 'wieder-verfuegbar' ); ?></li>
-					</ul>
-				</div>
-
-			<?php else : ?>
-
-				<hr>
-				<div class="card wvb-pro-teaser" style="max-width:680px;padding:20px 24px;margin-top:20px;background:#f6f7f7;border:1px dashed #a7aaad;">
-					<h2><?php esc_html_e( 'Wieder verfügbar Pro', 'wieder-verfuegbar' ); ?></h2>
-					<ul class="wvb-pro-features">
-						<li>
-							<span class="dashicons dashicons-email-alt"></span>
-							<?php esc_html_e( 'Double-Opt-in mit E-Mail-Bestätigung (DSGVO-konform)', 'wieder-verfuegbar' ); ?>
-						</li>
-						<li>
-							<span class="dashicons dashicons-networking"></span>
-							<?php esc_html_e( 'Benachrichtigung auf Variationsebene', 'wieder-verfuegbar' ); ?>
-						</li>
-						<li>
-							<span class="dashicons dashicons-format-image"></span>
-							<?php esc_html_e( 'HTML-E-Mails mit eigenem Branding', 'wieder-verfuegbar' ); ?>
-						</li>
-						<li>
-							<span class="dashicons dashicons-download"></span>
-							<?php esc_html_e( 'Alle Abonnements als CSV exportieren', 'wieder-verfuegbar' ); ?>
-						</li>
-						<li>
-							<span class="dashicons dashicons-chart-bar"></span>
-							<?php esc_html_e( 'Statistiken und Konversionsberichte', 'wieder-verfuegbar' ); ?>
-						</li>
-					</ul>
-					<p>
-						<a href="https://products.kipphard.com/wieder-verfuegbar" target="_blank" rel="noopener noreferrer" class="button button-secondary">
-							<?php esc_html_e( 'Jetzt upgraden', 'wieder-verfuegbar' ); ?>
-						</a>
-					</p>
-				</div>
-
-			<?php endif; ?>
 
 		</div>
 		<?php

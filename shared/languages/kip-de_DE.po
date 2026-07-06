@@ -1,0 +1,75 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: kip-ui shared\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Theme (adaptive)"
+msgstr "Theme (adaptiv)"
+
+msgid "Soft"
+msgstr "Sanft"
+
+msgid "Bold"
+msgstr "Kräftig"
+
+msgid "Minimal"
+msgstr "Minimal"
+
+msgid "Use plugin styling"
+msgstr "Plugin-Styling verwenden"
+
+msgid "Apply the built-in design (uncheck to inherit your theme completely)."
+msgstr "Das integrierte Design anwenden (deaktivieren, um vollständig das Theme zu übernehmen)."
+
+msgid "Design preset"
+msgstr "Design-Vorlage"
+
+msgid "A one-click look. \"Theme\" blends into your site; \"Soft\" is the modern default."
+msgstr "Ein Look per Klick. „Theme“ fügt sich ins Theme ein; „Sanft“ ist der moderne Standard."
+
+msgid "Accent colour"
+msgstr "Akzentfarbe"
+
+msgid "Layout"
+msgstr "Layout"
+
+msgid "Grid (cards)"
+msgstr "Raster (Karten)"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Table"
+msgstr "Tabelle"
+
+msgid "Colour scheme"
+msgstr "Farbschema"
+
+msgid "Auto (follow device)"
+msgstr "Automatisch (Gerät)"
+
+msgid "Light"
+msgstr "Hell"
+
+msgid "Dark"
+msgstr "Dunkel"
+
+msgid "Font family"
+msgstr "Schriftart"
+
+msgid "Inherit theme font"
+msgstr "Theme-Schriftart übernehmen"
+
+msgid "Corner radius (px)"
+msgstr "Eckenradius (px)"
+
+msgid "Preset default"
+msgstr "Vorlagen-Standard"
+
+msgid "Custom CSS"
+msgstr "Eigenes CSS"

@@ -18,16 +18,7 @@ class Helpers {
 	const CAP = 'manage_options';
 
 	/** Options-Key für die Plugin-Einstellungen. */
-	const OPT_SETTINGS = 'wvb_settings';
-
-	/**
-	 * Prüft ob die Pro-Lizenz aktiv ist. Standardmäßig false.
-	 *
-	 * @return bool
-	 */
-	public static function is_pro() {
-		return (bool) apply_filters( 'wvb_is_pro', defined( 'WVB_PRO' ) && WVB_PRO );
-	}
+	const OPT_SETTINGS = 'kipphard_back_in_stock_settings';
 
 	/**
 	 * Gibt den vollständigen Tabellennamen zurück.
@@ -36,7 +27,7 @@ class Helpers {
 	 */
 	public static function table() {
 		global $wpdb;
-		return $wpdb->prefix . 'wvb_subscriptions';
+		return $wpdb->prefix . 'kipphard_back_in_stock_subscriptions';
 	}
 
 	/**
@@ -45,15 +36,19 @@ class Helpers {
 	 * @return array<string,mixed>
 	 */
 	public static function defaults() {
-		return array(
-			'heading'       => 'Benachrichtige mich, wenn wieder verfügbar',
-			'button_label'  => 'Benachrichtige mich',
-			'consent_text'  => 'Ich stimme zu, per E-Mail benachrichtigt zu werden, sobald dieses Produkt wieder verfügbar ist.',
-			'email_subject' => 'Wieder verfügbar: {product}',
-			'email_body'    => "Hallo,\n\ndas Produkt \"{product}\" ist jetzt wieder auf Lager.\n\nJetzt kaufen: {link}\n\nViele Grüße",
-			'msg_success'   => 'Vielen Dank! Wir benachrichtigen Sie, sobald das Produkt wieder verfügbar ist.',
-			'msg_error'     => 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
+		$base = array(
+			'heading'       => 'Notify me when back in stock',
+			'button_label'  => 'Notify me',
+			'consent_text'  => 'I agree to be notified by email as soon as this product is available again.',
+			'email_subject' => 'Back in stock: {product}',
+			'email_body'    => "Hello,\n\nthe product \"{product}\" is now back in stock.\n\nBuy now: {link}\n\nBest regards",
+			'msg_success'   => 'Thank you! We will notify you as soon as the product is available again.',
+			'msg_error'     => 'An error occurred. Please try again.',
 		);
+		if ( class_exists( '\Kipphard\Shared\Appearance' ) ) {
+			$base = array_merge( $base, \Kipphard\Shared\Appearance::defaults() );
+		}
+		return $base;
 	}
 
 	/**
@@ -77,7 +72,7 @@ class Helpers {
 	public static function sanitize_settings( array $raw ) {
 		$defaults = self::defaults();
 
-		return array(
+		$clean = array(
 			'heading'       => isset( $raw['heading'] ) ? sanitize_text_field( wp_unslash( $raw['heading'] ) ) : $defaults['heading'],
 			'button_label'  => isset( $raw['button_label'] ) ? sanitize_text_field( wp_unslash( $raw['button_label'] ) ) : $defaults['button_label'],
 			'consent_text'  => isset( $raw['consent_text'] ) ? sanitize_text_field( wp_unslash( $raw['consent_text'] ) ) : $defaults['consent_text'],
@@ -86,6 +81,12 @@ class Helpers {
 			'msg_success'   => isset( $raw['msg_success'] ) ? sanitize_text_field( wp_unslash( $raw['msg_success'] ) ) : $defaults['msg_success'],
 			'msg_error'     => isset( $raw['msg_error'] ) ? sanitize_text_field( wp_unslash( $raw['msg_error'] ) ) : $defaults['msg_error'],
 		);
+
+		if ( class_exists( '\Kipphard\Shared\Appearance' ) ) {
+			$clean = array_merge( $clean, \Kipphard\Shared\Appearance::sanitize( $raw ) );
+		}
+
+		return $clean;
 	}
 
 	/**
@@ -96,7 +97,7 @@ class Helpers {
 	 */
 	public static function guard_post( $action, $field = '_wpnonce' ) {
 		if ( ! current_user_can( self::CAP ) ) {
-			wp_die( esc_html__( 'Keine Berechtigung.', 'wieder-verfuegbar' ), '', array( 'response' => 403 ) );
+			wp_die( esc_html__( 'Permission denied.', 'kipphard-back-in-stock' ), '', array( 'response' => 403 ) );
 		}
 		check_admin_referer( $action, $field );
 	}

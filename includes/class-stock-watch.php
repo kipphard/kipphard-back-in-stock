@@ -17,7 +17,7 @@ class Stock_Watch {
 	/**
 	 * Transient-Präfix um Doppelversand innerhalb einer Anfrage zu verhindern.
 	 */
-	const LOCK_TRANSIENT_PREFIX = 'wvb_notify_lock_';
+	const LOCK_TRANSIENT_PREFIX = 'kipphard_back_in_stock_notify_lock_';
 
 	/**
 	 * Hooks registrieren.

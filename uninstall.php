@@ -9,7 +9,7 @@ defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
 global $wpdb;
 
-delete_option( 'wvb_settings' );
+delete_option( 'kipphard_back_in_stock_settings' );
 
-$table = $wpdb->prefix . 'wvb_subscriptions';
+$table = $wpdb->prefix . 'kipphard_back_in_stock_subscriptions';
 $wpdb->query( "DROP TABLE IF EXISTS {$table}" );

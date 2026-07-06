@@ -1,0 +1,249 @@
+# Translation of wieder-verfuegbar in German
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the wieder-verfuegbar package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wieder-verfuegbar 0.1.0\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/class-admin.php:35 includes/class-admin.php:136
+msgid "Back in Stock – Subscriptions"
+msgstr "Wieder verfügbar – Abonnements"
+
+#: includes/class-admin.php:36 includes/class-plugin.php:81
+msgid "Wieder verfügbar"
+msgstr "Wieder verfügbar"
+
+#: includes/class-admin.php:43 includes/class-admin.php:258
+msgid "Back in Stock – Settings"
+msgstr "Wieder verfügbar – Einstellungen"
+
+#: includes/class-admin.php:44
+msgid "WVB Settings"
+msgstr "WVB Einstellungen"
+
+#: includes/class-admin.php:142
+#, php-format
+msgid "Total active subscriptions: %d"
+msgstr "Aktive Abonnements gesamt: %d"
+
+#: includes/class-admin.php:149
+msgid "No subscriptions yet."
+msgstr "Noch keine Abonnements vorhanden."
+
+#: includes/class-admin.php:154
+msgid "ID"
+msgstr "ID"
+
+#: includes/class-admin.php:155
+msgid "Product"
+msgstr "Produkt"
+
+#: includes/class-admin.php:156
+msgid "Email"
+msgstr "E-Mail"
+
+#: includes/class-admin.php:157
+msgid "Status"
+msgstr "Status"
+
+#: includes/class-admin.php:158
+msgid "Date"
+msgstr "Datum"
+
+#: includes/class-admin.php:211
+msgid "Pro Actions"
+msgstr "Pro-Aktionen"
+
+#: includes/class-admin.php:216
+msgid "Export CSV"
+msgstr "CSV exportieren"
+
+#: includes/class-admin.php:223
+#, php-format
+msgid "Total subscriptions: %d"
+msgstr "Abonnements gesamt: %d"
+
+#: includes/class-admin.php:262
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+#: includes/class-admin.php:273
+msgid "Form Heading"
+msgstr "Formular-Überschrift"
+
+#: includes/class-admin.php:282
+msgid "Button Label"
+msgstr "Button-Beschriftung"
+
+#: includes/class-admin.php:291
+msgid "Consent Text (GDPR)"
+msgstr "Einwilligungstext (DSGVO)"
+
+#: includes/class-admin.php:300
+msgid "Email Subject"
+msgstr "E-Mail-Betreff"
+
+#: includes/class-admin.php:306
+msgid "Placeholder: {product}"
+msgstr "Platzhalter: {product}"
+
+#: includes/class-admin.php:312
+msgid "Email Body"
+msgstr "E-Mail-Text"
+
+#: includes/class-admin.php:317
+msgid "Placeholders: {product}, {link}"
+msgstr "Platzhalter: {product}, {link}"
+
+#: includes/class-admin.php:323
+msgid "Success Message"
+msgstr "Erfolgsmeldung"
+
+#: includes/class-admin.php:332
+msgid "Error Message"
+msgstr "Fehlermeldung"
+
+#: includes/class-admin.php:341
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
+
+#: includes/class-admin.php:348
+msgid "Pro Features"
+msgstr "Pro-Funktionen"
+
+#: includes/class-admin.php:349
+msgid "Wieder verfügbar Pro is active."
+msgstr "Wieder verfügbar Pro ist aktiv."
+
+#: includes/class-admin.php:351
+msgid "Double opt-in: email confirmation before subscription is activated"
+msgstr "Double-Opt-in: E-Mail-Bestätigung vor Aktivierung des Abonnements"
+
+#: includes/class-admin.php:352
+msgid "Variation level: notification per product variation"
+msgstr "Variationsebene: Benachrichtigung pro Produktvariante"
+
+#: includes/class-admin.php:353
+msgid "HTML emails with custom template"
+msgstr "HTML-E-Mails mit eigenem Template"
+
+#: includes/class-admin.php:354
+msgid "CSV export of all subscriptions"
+msgstr "CSV-Export aller Abonnements"
+
+#: includes/class-admin.php:355
+msgid "Statistics: open rates, conversions"
+msgstr "Statistiken: Öffnungsraten, Konversionen"
+
+#: includes/class-admin.php:363
+msgid "Wieder verfügbar Pro"
+msgstr "Wieder verfügbar Pro"
+
+#: includes/class-admin.php:367
+msgid "Double opt-in with email confirmation (GDPR-compliant)"
+msgstr "Double-Opt-in mit E-Mail-Bestätigung (DSGVO-konform)"
+
+#: includes/class-admin.php:371
+msgid "Notifications at variation level"
+msgstr "Benachrichtigung auf Variationsebene"
+
+#: includes/class-admin.php:375
+msgid "HTML emails with custom branding"
+msgstr "HTML-E-Mails mit eigenem Branding"
+
+#: includes/class-admin.php:379
+msgid "Export all subscriptions as CSV"
+msgstr "Alle Abonnements als CSV exportieren"
+
+#: includes/class-admin.php:383
+msgid "Statistics and conversion reports"
+msgstr "Statistiken und Konversionsberichte"
+
+#: includes/class-admin.php:388
+msgid "Upgrade now"
+msgstr "Jetzt upgraden"
+
+#: includes/class-double-optin.php:105
+msgid "Invalid confirmation link."
+msgstr "Ungültiger Bestätigungslink."
+
+#: includes/class-double-optin.php:120
+msgid "The confirmation link is invalid or has already been used."
+msgstr "Der Bestätigungslink ist ungültig oder bereits verwendet."
+
+#: includes/class-double-optin.php:139
+msgid "Subscription confirmed"
+msgstr "Anmeldung bestätigt"
+
+#: includes/class-double-optin.php:147
+#, php-format
+msgid "Your back-in-stock notification for \"%s\" has been successfully activated."
+msgstr "Ihre Benachrichtigung für „%s\" wurde erfolgreich aktiviert."
+
+#: includes/class-double-optin.php:153
+msgid "Back to shop"
+msgstr "Zurück zum Shop"
+
+#: includes/class-double-optin.php:174
+#, php-format
+msgid "Please confirm your back-in-stock notification for \"%s\""
+msgstr "Bitte bestätigen Sie Ihre Benachrichtigung für „%s\""
+
+#: includes/class-double-optin.php:178
+msgid "Please confirm your subscription for the back-in-stock notification:"
+msgstr "Bitte bestätigen Sie Ihre Anmeldung für die Lagerbenachrichtigung:"
+
+#: includes/class-double-optin.php:180
+msgid ""
+"If you did not make this request, you can ignore this email."
+msgstr ""
+"Falls Sie diese Anfrage nicht gestellt haben, können Sie diese E-Mail "
+"ignorieren."
+
+#: includes/class-frontend.php:89
+msgid "Email address"
+msgstr "E-Mail-Adresse"
+
+#: includes/class-frontend.php:98
+msgid "your@email.com"
+msgstr "ihre@email.de"
+
+#: includes/class-frontend.php:132
+msgid "Please enter a valid email address."
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse an."
+
+#: includes/class-frontend.php:140
+msgid "Please agree to receive the notification."
+msgstr "Bitte stimmen Sie der Benachrichtigung zu."
+
+#: includes/class-frontend.php:148 includes/class-frontend.php:156
+msgid "Invalid product."
+msgstr "Ungültiges Produkt."
+
+#: includes/class-frontend.php:165
+msgid "This product is already in stock."
+msgstr "Dieses Produkt ist bereits auf Lager."
+
+#: includes/class-frontend.php:174
+msgid ""
+"Please confirm your email address. We have sent you an email."
+msgstr ""
+"Bitte bestätigen Sie Ihre E-Mail-Adresse. Wir haben Ihnen eine E-Mail "
+"gesendet."
+
+#: includes/class-helpers.php:99
+msgid "Permission denied."
+msgstr "Keine Berechtigung."
+
+#: includes/class-plugin.php:82
+msgid ""
+"WooCommerce must be installed and activated for this plugin to work."
+msgstr ""
+"WooCommerce muss installiert und aktiviert sein, damit dieses Plugin "
+"funktioniert."
